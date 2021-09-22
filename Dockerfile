@@ -14,15 +14,15 @@ rm -rf /var/lib/apt/lists/* && \
 cd /tmp && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
 #RUN usermod -u 1000 www-data
 #RUN rm -rf /var/www/html 
-#WORKDIR /var/www/html   
+WORKDIR /var/www/html   
 # ยังแก้ปัญาหาเรื่อง /var/www/html ไม่ได้
-#RUN composer require mpdf/mpdf:5.7.0
+RUN composer require mpdf/mpdf:5.7.0
 
-WORKDIR /html
+#WORKDIR /html
 
 COPY composer.json composer.json
 COPY composer.lock composer.lock
-
+COPY . /var/www/html
 
 RUN composer install \
     --ignore-platform-reqs \
