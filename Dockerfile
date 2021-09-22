@@ -12,6 +12,8 @@ php5-apcu php5-intl php5-imagick php5-mcrypt php5-json php5-gd php5-curl && \
 php5enmod mcrypt && \
 rm -rf /var/lib/apt/lists/* && \
 cd /tmp && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+RUN usermod -u 1000 www-data
+RUN rm -rf /var/www/html 
 WORKDIR /var/www/html
 #RUN composer require mpdf/mpdf:5.7.0
 
