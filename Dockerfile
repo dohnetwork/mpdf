@@ -1,6 +1,6 @@
 FROM nimmis/apache:14.04
 
-MAINTAINER nimmis <kjell.havneskold@gmail.com>
+MAINTAINER network <dohnetwork@gmail.com>
 
 # disable interactive functions
 ENV DEBIAN_FRONTEND noninteractive
