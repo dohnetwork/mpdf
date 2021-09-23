@@ -23,21 +23,28 @@ COPY --chown=www-data:www-data .  /var/www/html/web
 RUN chmod -R 755 /var/www/html/web 
 
 # ยังแก้ปัญาหาเรื่อง /var/www/html ไม่ได้
-WORKDIR /var/www/html/web
+RUN mkdir -p /var/www/html/api
+WORKDIR /var/www/html/api
+COPY composer.json composer.lock symfony.lock .env.dist ./
+
+RUN composer install \
+    && bin/console make:migratio
+
+#WORKDIR /var/www/html/web
 #RUN composer require mpdf/mpdf:5.7.0
 
-COPY composer.json ./
-COPY composer.lock ./
-RUN composer install --no-scripts --no-autoloader
+#COPY composer.json ./
+#COPY composer.lock ./
+#RUN composer install --no-scripts --no-autoloader
 COPY . ./
-RUN composer dump-autoload --optimize && \
+#RUN composer dump-autoload --optimize && \
 	composer run-script post-install-cmd
 
 
 #COPY composer.json composer.json
 #COPY composer.lock composer.lock
 #COPY . /var/www/html/web
-#RUN composer install \
+RUN composer install \
     --ignore-platform-reqs \
     --no-interaction \
     --no-plugins \
