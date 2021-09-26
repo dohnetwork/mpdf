@@ -1,9 +1,12 @@
 version: "3"
 services:
-  frontend:
-    image: webreport
-    volumes:
-      - myapp:/home/node/app
-volumes:
-  myapp:
-    external: true
+ db:
+  image: webreport
+  container_name: webreport
+  hostname: web
+  restart: always
+  volumes:
+   - ./myapp:/var/www/html
+ 
+  ports:
+   - "80:80"
