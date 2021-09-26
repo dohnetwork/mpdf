@@ -1,0 +1,6 @@
+version: "3"
+services:
+  snipeit:
+    image:  webreport
+    container_name: report
+    restart: always
