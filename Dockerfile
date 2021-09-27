@@ -12,6 +12,7 @@ php5enmod mcrypt php5-pod-mysql php5-opensll php5-mongo php5-mbstring php5-imap 
 #php5enmod mcrypt && \
 rm -rf /var/lib/apt/lists/* && \
 cd /tmp && curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+RUN docker-php-ext-install mysqli
 RUN mkdir -p /var/www/html/
 RUN chown -R www-data:www-data /var/www/html 
 RUN chmod -R 755 /var/www/html/ 
