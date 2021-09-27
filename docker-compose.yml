@@ -6,7 +6,9 @@ services:
   hostname: web
   restart: always
   volumes:
-   - ./myapp:/var/www/html
- 
+   - "$PWD":/var/www/html
+    
   ports:
    - "80:80"
+   
+   #docker run -d -p 82:80  -v "$PWD":/var/www/html www18
